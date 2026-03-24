@@ -1,13 +1,56 @@
 ---
-// layout
-// components
-import CategoryCloud from "@components/CategoryCloud/CategoryCloud.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+
+const API_KEY = import.meta.env.YOUTUBE_API_KEY;
+const CHANNEL_ID = "UCQAyXZiV38qM5CmnYYonCfQ"; // Derived from @RinggitRealms
+
+// 1. Fetch the "Uploads" playlist ID for your channel
+const channelRes = await fetch(
+  `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`
+);
+const channelData = await channelRes.json();
+const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
+
+// 2. Fetch the videos from that playlist
+const playlistRes = await fetch(
+  `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=${uploadsPlaylistId}&key=${API_KEY}`
+);
+const playlistData = await playlistRes.json();
+const videoIds = playlistData.items.map(item => item.contentDetails.videoId).join(',');
+
+// 3. Get detailed stats (Views) for those videos
+const statsRes = await fetch(
+  `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds}&key=${API_KEY}`
+);
+const statsData = await statsRes.json();
+
+// 4. Sort by views (Descending)
+const topVideos = statsData.items
+  .sort((a, b) => parseInt(b.statistics.viewCount) - parseInt(a.statistics.viewCount))
+  .slice(0, 6); // Top 6 videos
 ---
 
-<BaseLayout title="Recent Videos" description="Recent Videos on our Youtube channel">
-	<div class="mx-auto max-w-3xl px-4 pt-24 md:pt-36">
-		<h1 class="h1 text-center">Videos</h1>
-		<hr class="bg-primary-600/50 mx-auto mt-4 max-w-[30%] rounded-full border-none pt-1" />	
-	</div>
-</BaseLayout>
+<BaseLayout title="Most Popular Videos" description="Popular videos from Ringgit Realms">
+    <div class="mx-auto max-w-5xl px-4 pt-24 md:pt-36">
+        <h1 class="h1 text-center">Most Popular Videos</h1>
+        <hr class="bg-primary-600/50 mx-auto mt-4 max-w-[30%] rounded-full border-none pt-1" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {topVideos.map((video) => (
+                <div class="flex flex-col gap-2 group">
+                    <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" class="overflow-hidden rounded-xl">
+                        <img 
+                            src={video.snippet.thumbnails.high.url} 
+                            alt={video.snippet.title}
+                            class="aspect-video object-cover transition group-hover:scale-105"
+                        />
+                    </a>
+                    <h3 class="font-bold leading-tight mt-2 line-clamp-2">{video.snippet.title}</h3>
+                    <p class="text-sm opacity-70">
+                        {Number(video.statistics.viewCount).toLocaleString()} views
+                    </p>
+                </div>
+            ))}
+        </div>
+    </div>
+</BaseLayout>	
