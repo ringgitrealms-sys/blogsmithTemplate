@@ -69,10 +69,8 @@
 
 	/* main gradient. Used for tags and some headings */
 	.main-text-gradient {
-        /* Transitions from a light champagne to your core gold anchor */
         @apply bg-gradient-to-r from-primary-200 via-primary-500 to-primary-800 bg-clip-text text-transparent;
-        /* Optional: adds a bit of 'weight' to the text for better legibility on dark backgrounds */
-        display: inline-block;
+        
     }
 
 	.rotate-180 {
