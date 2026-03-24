@@ -27,7 +27,8 @@
 		@apply ring-primary-700 rounded-xs ring-2 outline-none;
 	}
 	html {
-		@apply bg-base-100 text-base-900 leading-[1.6rem] scheme-light;
+		@apply bg-base-100 leading-[1.6rem] scheme-light;
+		color: var(--color-text-100);
 		scroll-behavior: smooth;
 		-moz-text-size-adjust: none;
 		-webkit-text-size-adjust: none;
@@ -68,8 +69,11 @@
 
 	/* main gradient. Used for tags and some headings */
 	.main-text-gradient {
-		@apply bg-gradient-to-r from-indigo-600 to-sky-600 bg-clip-text text-transparent;
-	}
+        /* Transitions from a light champagne to your core gold anchor */
+        @apply bg-gradient-to-r from-primary-200 via-primary-500 to-primary-800 bg-clip-text text-transparent;
+        /* Optional: adds a bit of 'weight' to the text for better legibility on dark backgrounds */
+        display: inline-block;
+    }
 
 	.rotate-180 {
 		@apply rotate-180;

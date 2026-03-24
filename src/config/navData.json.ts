@@ -41,10 +41,11 @@ const navConfig: navItem[] = [
 		text: "Videos",
 		link: "/videos/",
 	},
-	{
-		text: "Newsletter",
-		link: "/newsletter/",
-	},
+	// NEWSLETTER TK BUAT LAGI, NEXT MONTH BARU BUAT
+	// {
+	// 	text: "Newsletter",
+	// 	link: "/newsletter/",
+	// },
 	// {
 	// 	text: "Pages",
 	// 	dropdown: [
