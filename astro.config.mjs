@@ -40,6 +40,7 @@ export default defineConfig({
 					"chevron-down",
 					"category",
 					"calendar-event",
+					"eye",
 				],
 			},
 		}),
