@@ -1,32 +1,68 @@
 ---
 import Button from "@components/Button/Button.astro";
+
+const images = [
+    "/images/bg1.jpg",
+    "/images/bg2.jpg",
+    "/images/bg3.jpg"
+];
 ---
 
-<section
-	id="hero"
-	class="from-primary-200/10 via-primary-300/40 to-primary-600/60 relative mb-14 flex min-h-[60svh] w-full bg-gradient-to-b from-10% via-60% pb-24"
->
-	<!-- hero items -->
-	<div class="mx-auto flex items-center pt-16">
-		<!-- Hero text -->
-		<div class="site-container mx-auto max-w-4xl gap-8 py-20 text-center md:pt-32">
-			<h1 class="text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
-				Welcome to
-				<span class="main-text-gradient"> RinggitRealms</span>
-			</h1>
-			<p class="description mx-auto mt-6 max-w-xs sm:max-w-sm md:max-w-lg">
-				Your Ultimate Guide to Malaysian News. Stay informed and engaged with the latest insights and analysis on all things Malaysian.
-				From politics and economy to culture and lifestyle, we cover it all.
-			</p>
-			<div class="xs:flex-row mx-auto mt-8 flex max-w-lg flex-col gap-3 px-6">
-				<Button
-					variant="primary"
-					href="https://www.youtube.com/@RinggitRealms/videos"
-					class="mx-auto"
-				>
-					Check out our Youtube channel
-				</Button>
-			</div>
-		</div>
-	</div>
+<section id="hero" class="relative mb-14 flex min-h-[60svh] w-full items-center overflow-hidden pb-24">
+    <div class="absolute inset-0 -z-10">
+        <div class="bg-layer img-1"></div>
+        <div class="bg-layer img-2"></div>
+        <div class="bg-layer img-3"></div>
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-primary-200/20 via-primary-300/50 to-primary-600/80"></div>
+    </div>
+
+    <div class="mx-auto flex w-full items-center pt-16">
+        <div class="site-container mx-auto max-w-4xl gap-8 py-20 text-center md:pt-32">
+            <h1 class="text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
+                Welcome to <span class="main-text-gradient"> RinggitRealms</span>
+            </h1>
+            <p class="description mx-auto mt-6 max-w-xs sm:max-w-sm md:max-w-lg">
+                Your Ultimate Guide to Malaysian News. Stay informed and engaged with the latest insights and analysis on all things Malaysian.
+            </p>
+            <div class="xs:flex-row mx-auto mt-8 flex max-w-lg flex-col gap-3 px-6">
+                <Button variant="primary" href="https://www.youtube.com/@RinggitRealms/videos" class="mx-auto">
+                    Check out our Youtube channel
+                </Button>
+            </div>
+        </div>
+    </div>
 </section>
+
+<style define:vars={{ img1: `url(${images[0]})`, img2: `url(${images[1]})`, img3: `url(${images[2]})` }}>
+    .bg-layer {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0; /* Hidden by default */
+        animation: crossFade 18s infinite;
+    }
+
+    .img-1 { 
+        background-image: var(--img1); 
+        animation-delay: 0s;
+    }
+    .img-2 { 
+        background-image: var(--img2); 
+        animation-delay: 6s; /* Starts 1/3 through the cycle */
+    }
+    .img-3 { 
+        background-image: var(--img3); 
+        animation-delay: 12s; /* Starts 2/3 through the cycle */
+    }
+
+    @keyframes crossFade {
+        0% { opacity: 0; }
+        5% { opacity: 1; }   /* Fade in quickly */
+        33% { opacity: 1; }  /* Stay visible for 1/3 of the time */
+        38% { opacity: 0; }  /* Fade out */
+        100% { opacity: 0; } /* Stay hidden for the rest */
+    }
+</style>
