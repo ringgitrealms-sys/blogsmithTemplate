@@ -14,7 +14,8 @@
 	:not(pre *, .admonition *, details *, blockquote *, span, a, h1, h2, h3, h4, h5, h6):not(
 		:where(.not-content *)
 	) {
-	@apply text-base-900/85;
+	/* @apply text-base-900/85; */
+	color: var(--color-text-100);
 }
 
 /* paragraph spacing except for paragraphs inside list items */
@@ -30,7 +31,8 @@
 }
 
 .markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
-	@apply text-base-900 mt-2 mb-4 text-base leading-normal;
+	@apply mt-2 mb-4 text-base leading-normal;
+	color: var(--color-text-100);
 }
 
 .markdown-content h1:not(:where(.not-content *)) {
@@ -46,10 +48,12 @@
 	@apply text-lg font-medium md:text-xl;
 }
 .markdown-content h5:not(:where(.not-content *)) {
-	@apply text-base-900/80 font-medium md:text-lg;
+	@apply font-medium md:text-lg;
+	color: var(--color-text-100);
 }
 .markdown-content h6:not(:where(.not-content *)) {
-	@apply text-base-900/80 font-medium md:text-lg;
+	@apply font-medium md:text-lg;
+	color: var(--color-text-100);
 }
 
 /* anchor tags */
@@ -105,12 +109,14 @@
 
 /* italics */
 .markdown-content em:not(:where(.not-content *)) {
-	@apply text-base-900 italic;
+	@apply italic;
+	color: var(--color-text-100);
 }
 
 /* bold */
 .markdown-content strong:not(:where(.not-content *)) {
-	@apply text-base-900 font-bold;
+	@apply font-bold;
+	color: var(--color-text-100);
 }
 
 /* lists */
@@ -137,7 +143,9 @@
 .markdown-content :is(ol):not(:where(.not-content *)) {
 	@apply list-decimal;
 	::marker {
-		@apply text-base-900/60;
+		/* @apply text-base-900/60; */
+		
+		color: var(--color-text-100);
 	}
 }
 
@@ -167,7 +175,8 @@
 	padding-inline-end: 0;
 }
 .markdown-content th:not(:where(.not-content *)) {
-	@apply text-base-900 font-medium;
+	@apply font-medium;
+	color: var(--color-text-100);
 }
 /* Align headings to the start of the line unless set by the `align` attribute. */
 .markdown-content th:not([align]):not(:where(.not-content *)) {
