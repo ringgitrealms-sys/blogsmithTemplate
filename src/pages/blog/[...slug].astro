@@ -19,7 +19,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const post = Astro.props as Props;
 const { Content } = await render(post);
 ---
-
+<!-- the actual blogs  -->
 <BlogLayout post={post}>
 	<Content />
 </BlogLayout>

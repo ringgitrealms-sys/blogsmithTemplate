@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+// Replace this with the actual path to your moderator image
+import moderatorImage from "/images	/atifh.png"; 
+
+const channelName = "RinggitRealms";
+---
+
+<BaseLayout title={`About ${channelName}`} description="Learn more about the mission behind RinggitRealms and our focus on Malaysian financial markets.">
+    <div class="mx-auto max-w-5xl px-4 pt-24 md:pt-36">
+        <h1 class="h1 text-center">About {channelName}</h1>
+        <hr class="bg-primary-600/50 mx-auto mt-4 max-w-[15%] rounded-full border-none pt-1" />
+
+        <div class="mt-16 grid items-center gap-12 md:grid-cols-2">
+            <div class="flex justify-center md:justify-end">
+                <div class="relative group">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary-600 to-white opacity-25 blur transition duration-1000 group-hover:opacity-50"></div>
+                    <Image 
+                        src="/images/atifh.png"
+                        alt="RinggitRealms Moderator" 
+                        class="relative h-80 w-80 rounded-2xl object-cover shadow-2xl"
+                        width={400}
+                        height={400}
+                    />
+                </div>
+            </div>
+            
+            <div class="text-center md:text-left">
+                <h2 class="h2 mb-4 text-primary-600">Bridging the Gap in Local Finance</h2>
+                <p class="text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
+                    I'm the moderator behind RinggitRealms. My goal is simple: to make the complex world of Malaysian equity markets and personal finance accessible to every Malaysian.
+                </p>
+                <div class="mt-6 flex justify-center gap-4 md:justify-start">
+                    <span class="rounded-full bg-primary-600 px-4 py-1 text-sm font-semibold text-base-100">KLCI Insights</span>
+                    <span class="rounded-full bg-primary-600 px-4 py-1 text-sm font-semibold text-base-100">Economy News</span>
+                </div>
+            </div>
+        </div>
+
+		
+
+
+        <div class="mx-auto mt-20 max-w-3xl space-y-8 pb-24">
+            <section>
+                <h3 class="h3 mb-4">Our Mission</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    In an era of global volatility, staying informed about the local landscape is more crucial than ever. <strong>RinggitRealms</strong> was founded to provide high-quality, data-driven financial news specifically tailored for the Malaysian audience. From Bursa Malaysia movements to Bank Negara policy changes, we break down what matters most to your wallet.
+                </p>
+            </section>
+
+			<blockquote class="border-l-4 border-primary-600 pl-6 italic text-gray-700 dark:text-gray-300">
+				"Financial literacy isn't just about saving; it's about understanding the realms of opportunity within our own borders."
+			</blockquote>
+
+            <section>
+                <h3 class="h3 mb-4">What We Cover</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    We specialize in deep dives into the <strong>FBM KLCI</strong>, sector analysis, and macroeconomic trends that impact the Ringgit. Whether you are a seasoned investor or just starting your financial journey, our content is designed to provide actionable insights without the unnecessary jargon.
+                </p>
+            </section>
+
+            
+        </div>
+    </div>
+</BaseLayout>

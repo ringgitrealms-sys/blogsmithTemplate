@@ -1,6 +1,6 @@
 ---
 title: About RinggitRealms
-description: What the helly
+description: Short description
 ---
 
 ## Hi gang
